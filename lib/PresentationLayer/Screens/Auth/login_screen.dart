@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: const EdgeInsets.only(top: 100),
+                margin: const EdgeInsets.only(top: 90),
                 alignment: Alignment.center,
                 child: Text("مرحباً بعودتك!",
                     style: UITextStyle.titleBold.copyWith(fontSize: 25)),
@@ -29,16 +29,23 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              const Center(
-                child: CircleAvatar(
-                  radius: 90,
-                  backgroundColor: UIColors.primary,
-                  backgroundImage:
-                      AssetImage("assets/images/schoolchildren.png"),
+               Center(
+                child: Container(
+                  width: Get.width/2,
+                  alignment: Alignment.center,
+                  child: const Image(
+                    image: AssetImage("assets/images/login_student.png"),
+                  ),
                 ),
+                // child: CircleAvatar(
+                //   radius: 90,
+                //   backgroundColor: UIColors.primary,
+                //   backgroundImage:
+                //       AssetImage("assets/images/login_student.png"),
+                // ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               TextFormField(
                 style: UITextStyle.titleBold.copyWith(color: Colors.black),
@@ -60,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 maxLines: 1,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Obx(() {
                 return TextFormField(
                   style: UITextStyle.titleBold.copyWith(color: Colors.black),
@@ -128,14 +135,16 @@ class LoginScreen extends StatelessWidget {
                 color: UIColors.studentTime,
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text('طلب تسجيل', style: UITextStyle.titleBold)
                   ],
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(AppRoutes.registration);
+                },
               ))
             ],
           ),
