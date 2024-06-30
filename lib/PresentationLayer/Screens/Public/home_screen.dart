@@ -5,8 +5,17 @@ import '../../../Constants/text_styles.dart';
 import '../../../Constants/ui_styles.dart';
 import '../../../main.dart';
 import '../../Widgets/Public/AppBar.dart';
-import '../../Widgets/screens_widgets/homeworks_item.dart';
-import '../../Widgets/screens_widgets/subjects_item.dart';
+import '../../Widgets/Public/Drawer.dart';
+import '../../Widgets/Public/bottom_navigation.dart';
+import '../../Widgets/screens_widgets/HomeScreenWidgets/Advertisements_item.dart';
+import '../../Widgets/screens_widgets/HomeScreenWidgets/alerts_item.dart';
+import '../../Widgets/screens_widgets/HomeScreenWidgets/archive_item.dart';
+import '../../Widgets/screens_widgets/HomeScreenWidgets/courses_item.dart';
+import '../../Widgets/screens_widgets/HomeScreenWidgets/homeworks_item.dart';
+import '../../Widgets/screens_widgets/HomeScreenWidgets/program_item.dart';
+import '../../Widgets/screens_widgets/HomeScreenWidgets/results_item.dart';
+import '../../Widgets/screens_widgets/HomeScreenWidgets/subjects_item.dart';
+import '../../Widgets/screens_widgets/HomeScreenWidgets/vacations_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,6 +27,8 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: UIColors.white,
         appBar: mainAppBar(context),
+        drawer:  InstituteDrawer(),
+        bottomNavigationBar: const InstituteBottomNavigationBar(),
         extendBodyBehindAppBar: true,
         body: Padding(
           padding: const EdgeInsets.only(right: 14.0, left: 14.0),
@@ -31,14 +42,13 @@ class HomeScreen extends StatelessWidget {
               children: const [
                 SubjectsItem(),
                  HomeWorksItem(),
-                // VacationsItem(),
-                // ResultsItem(),
-                // StudentTimeItem(),
-                // BusItem(),
-                // AlertsItem(),
-                // InstallmentsItem(),
-                // ComplaintsItem(),
-                // TeacherNotesItem()
+                ProgramItem(),
+                ResultsItem(),
+                ArchiveItem(),
+                CoursesItem(),
+                AlertsItem(),
+                AdvertisementsItem(),
+                VacationsItem(),
               ],
             ),
           ),

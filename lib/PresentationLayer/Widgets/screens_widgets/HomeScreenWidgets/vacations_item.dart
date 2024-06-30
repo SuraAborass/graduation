@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../Constants/colors.dart';
-import '../../../Constants/text_styles.dart';
+import '../../../../Constants/colors.dart';
+import '../../../../Constants/text_styles.dart';
 
-class SubjectsItem extends StatelessWidget {
-  const SubjectsItem({super.key});
+class VacationsItem extends StatelessWidget {
+  const VacationsItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +14,16 @@ class SubjectsItem extends StatelessWidget {
       child: Stack(
         children: [
           Container(
+            margin: const EdgeInsets.only(top: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: UIColors.subject,
+              color: UIColors.babyBlue,
             ),
             width: 163,
             height: 114,
           ),
           Positioned( top: 15,right:20,
-            child: Text('المواد',
+            child: Text('العطل',
               style: UITextStyle.bodyNormal.copyWith(color: UIColors.white,fontSize: 25),),),
           Positioned(top: 50,right: 80,
               child: Container(height: 80, width: 110,
@@ -32,7 +33,7 @@ class SubjectsItem extends StatelessWidget {
                 ),
               )),
           const Positioned(top: 65,right:100,
-              child: Icon(Icons.auto_stories,size: 37,color: UIColors.white,))
+              child: Icon(Icons.calendar_month_sharp,size: 43,color: UIColors.white,))
         ],
       ),
     );

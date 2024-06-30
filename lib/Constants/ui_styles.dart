@@ -21,6 +21,7 @@ final profileInputStyle = InputDecoration(
     ),
     borderRadius: BorderRadius.circular(17),
   ),
+  hintText: "",
   hintStyle: const TextStyle(
     color: UIColors.darkNormalText,
     fontSize: 16,

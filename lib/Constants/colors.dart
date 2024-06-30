@@ -13,6 +13,9 @@ class UIColors {
   static const lightBlack = Color(0xff6B6B6B);
   static const yellow = Color(0xffEBBE2B);
 
+  static const beige = Color(0xffF8D082);
+  static const babyRed = Color(0xffE9A89B);
+  static const babyBlue = Color(0xff68D2E8);
 //home widgets
   static const subject = Color(0xff433DC8);
   static const homework = Color(0xffF65E5E);

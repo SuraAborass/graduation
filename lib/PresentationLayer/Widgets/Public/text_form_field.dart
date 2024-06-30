@@ -3,7 +3,9 @@ import '../../../Constants/text_styles.dart';
 import '../../../Constants/ui_styles.dart';
 
 class InstituteTextFormField extends StatelessWidget {
-  const InstituteTextFormField({super.key, this.hintText = '',
+  const InstituteTextFormField({super.key,
+    //required this.controller
+    this.hintText = '',
     this.keyboardType = TextInputType.name,
     this.style = UITextStyle.smallBodyNormal,
     this.maxLines = 1,});
