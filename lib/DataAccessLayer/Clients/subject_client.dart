@@ -46,4 +46,18 @@ class SubjectsClient {
       return "";
     }
   }
+
+  Future<dynamic> getSubjectFiles(String id, String token) async {
+    var response = await http.get(
+      Uri.parse(baseLink + "student/file_subject/${id}"),
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return "";
+    }
+  }
 }

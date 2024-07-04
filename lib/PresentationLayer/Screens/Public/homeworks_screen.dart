@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import '../../../BusinessLayer/Controllers/subjects_controller.dart';
 import '../../../Constants/colors.dart';
 import '../../../Constants/text_styles.dart';
-import '../../Shimmers/homework_shimmer.dart';
 import '../../Widgets/Public/Drawer.dart';
 import '../../Widgets/Public/bottom_navigation.dart';
 import '../../Widgets/Public/institute_appbar.dart';
+import '../../Widgets/Shimmers/homework_shimmer.dart';
 import '../../Widgets/screens_widgets/homework_item.dart';
 
 class HomeworksScreen extends StatelessWidget {
@@ -48,7 +48,8 @@ class HomeworksScreen extends StatelessWidget {
               )
                   : RefreshIndicator(
                 onRefresh: () async {
-                  await subjectsController.getHomeworks(subjectId.toString());
+                  await subjectsController
+                      .getHomeworks(subjectId.toString());
                 },
                 child: subjectsController.homeworks.isEmpty
                     ? SizedBox(
@@ -69,7 +70,8 @@ class HomeworksScreen extends StatelessWidget {
                   ),
                 )
                     : ListView.builder(
-                  itemCount: subjectsController.homeworks.length,
+                  itemCount:
+                  subjectsController.homeworks.length,
                   itemBuilder: (context, i) {
                     return HomeworkItem(
                       homework: subjectsController.homeworks[i],

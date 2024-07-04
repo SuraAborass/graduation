@@ -10,11 +10,13 @@ class AppRoutes {
   static const notifications = "/home/notifications";
   static const homeworks = "/home/homeworks";
   static const ads = "/home/ads";
+  static const notes = "/home/notes";
   static const subWithHomeworks = "/home/homeworks/subWithHomeworks";
   static const profile = "/home/profile";
   static const subjectImages = "/home/subjects/subjectImages";
+  static const subjectFiles = "/home/subjects/subjectFiles";
   static const viewImage = "/home/subjects/subjectImages/viewImage";
-
+  static const years = "/home/years";
 
 
 }

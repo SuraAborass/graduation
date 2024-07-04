@@ -3,13 +3,17 @@ import '../PresentationLayer/Screens/Auth/login_screen.dart';
 import '../PresentationLayer/Screens/Auth/registration_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/out_home_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/teachers_screen.dart';
+import '../PresentationLayer/Screens/Public/adverts_screen.dart';
 import '../PresentationLayer/Screens/Public/all_adverts.dart';
+import '../PresentationLayer/Screens/Public/arachive_subjects_screen.dart';
 import '../PresentationLayer/Screens/Public/home_screen.dart';
 import '../PresentationLayer/Screens/Public/homeworks_screen.dart';
+import '../PresentationLayer/Screens/Public/notes_screen.dart';
 import '../PresentationLayer/Screens/Public/notifications_screen.dart';
 import '../PresentationLayer/Screens/Public/profile_screen.dart';
 import '../PresentationLayer/Screens/Public/program_screen.dart';
 import '../PresentationLayer/Screens/Public/splash_screen.dart';
+import '../PresentationLayer/Screens/Public/subject_files_screen.dart';
 import '../PresentationLayer/Screens/Public/subject_images_screen.dart';
 import '../PresentationLayer/Screens/Public/subjects_screen.dart';
 import '../PresentationLayer/Screens/Public/subjects_with_homework_screen.dart';
@@ -60,8 +64,17 @@ List<GetPage<dynamic>> getPages = [
   GetPage(
     name: AppRoutes.program,
     page: () =>  ProgramScreen(),),
-  // GetPage(
-  //   name: AppRoutes.ads,
-  //   page: () =>  All_Advert(),),
+  GetPage(
+    name: AppRoutes.subjectFiles,
+    page: () =>  SubjectFilesScreen(),),
+  GetPage(
+    name: AppRoutes.notes,
+    page: () =>  NotesScreen(),),
+  GetPage(
+    name: AppRoutes.ads,
+    page: () =>  AdvertsScreen(),),
+  GetPage(
+    name: AppRoutes.years,
+    page: () =>  ArchiveSubjectsScreen(),),
 
 ];

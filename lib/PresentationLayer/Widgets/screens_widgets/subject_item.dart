@@ -27,7 +27,7 @@ final Subject subject;
                   title: Text("الملفات",
                       style: UITextStyle.titleBold.copyWith(color: UIColors.black),
                       textDirection: TextDirection.rtl),
-                  onTap: () {},
+                  onTap: () {Get.toNamed(AppRoutes.subjectFiles, arguments: {'subjectId': subject.id});},
                 )
               ],
             ));

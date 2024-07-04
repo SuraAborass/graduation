@@ -14,7 +14,7 @@ class AdvertisementsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.to(All_Advert());
+        Get.toNamed(AppRoutes.ads);
       },
       child: Stack(
         children: [

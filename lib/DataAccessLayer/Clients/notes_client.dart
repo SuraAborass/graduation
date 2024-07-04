@@ -1,10 +1,10 @@
 import 'package:http/http.dart' as http;
 import '../../Constants/links.dart';
 
-class ProgramClient {
-  Future<dynamic> getPrograms(String token) async {
+class NotesClient {
+  Future<dynamic> getNotes(String token) async {
     var response = await http.get(
-      Uri.parse(baseLink + "student/my_programe"), // تأكد من أن الرمز المميز معروف في الخادم
+      Uri.parse(baseLink + "student/my_note"),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -17,4 +17,3 @@ class ProgramClient {
     }
   }
 }
-

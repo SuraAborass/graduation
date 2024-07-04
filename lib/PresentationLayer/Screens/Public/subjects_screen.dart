@@ -23,6 +23,9 @@ final SubjectsController subjectsController = Get.put(SubjectsController());
           child: GetBuilder(
             init: subjectsController,
             builder: (context) {
+              if (subjectsController.loading.value) {
+                return Center(child: CircularProgressIndicator());
+              } else {
               return SizedBox(
                 height: Get.height-190,
                 child: GridView.builder(
@@ -35,7 +38,7 @@ final SubjectsController subjectsController = Get.put(SubjectsController());
                     return  SubjectItem(subject: subjectsController.subjects[i],);
                   },
                 ),
-              );
+              );}
             }
           ),
         ),

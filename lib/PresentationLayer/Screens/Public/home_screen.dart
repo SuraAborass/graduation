@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../../Constants/colors.dart';
-import '../../../Constants/text_styles.dart';
-import '../../../Constants/ui_styles.dart';
-import '../../../main.dart';
 import '../../Widgets/Public/AppBar.dart';
 import '../../Widgets/Public/Drawer.dart';
 import '../../Widgets/Public/bottom_navigation.dart';
 import '../../Widgets/screens_widgets/HomeScreenWidgets/Advertisements_item.dart';
-import '../../Widgets/screens_widgets/HomeScreenWidgets/alerts_item.dart';
+import '../../Widgets/screens_widgets/HomeScreenWidgets/notes_item.dart';
 import '../../Widgets/screens_widgets/HomeScreenWidgets/archive_item.dart';
 import '../../Widgets/screens_widgets/HomeScreenWidgets/courses_item.dart';
 import '../../Widgets/screens_widgets/HomeScreenWidgets/homeworks_item.dart';
 import '../../Widgets/screens_widgets/HomeScreenWidgets/program_item.dart';
 import '../../Widgets/screens_widgets/HomeScreenWidgets/results_item.dart';
 import '../../Widgets/screens_widgets/HomeScreenWidgets/subjects_item.dart';
-import '../../Widgets/screens_widgets/HomeScreenWidgets/vacations_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -46,9 +41,8 @@ class HomeScreen extends StatelessWidget {
                 ResultsItem(),
                 ArchiveItem(),
                 CoursesItem(),
-                AlertsItem(),
+                NotesItem(),
                 AdvertisementsItem(),
-                VacationsItem(),
               ],
             ),
           ),

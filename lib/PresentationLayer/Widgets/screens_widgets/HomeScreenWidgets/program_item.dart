@@ -4,7 +4,7 @@ import 'package:graduation/Constants/get_routes.dart';
 
 import '../../../../Constants/colors.dart';
 import '../../../../Constants/text_styles.dart';
-import '../../../../DataAccessLayer/Models/pragram.dart';
+import '../../../../DataAccessLayer/Models/program.dart';
 
 class ProgramItem extends StatelessWidget {
   const ProgramItem({super.key});

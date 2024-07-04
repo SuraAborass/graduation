@@ -22,7 +22,7 @@ class CoursesItem extends StatelessWidget {
             height: 114,
           ),
           Positioned( top: 15,right:20,
-            child: Text('الدورات',
+            child: Text('دوراتي',
               style: UITextStyle.bodyNormal.copyWith(color: UIColors.white,fontSize: 25),),),
           Positioned(top: 50,right: 80,
               child: Container(height: 80, width: 110,

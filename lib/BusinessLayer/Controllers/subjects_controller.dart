@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../DataAccessLayer/Models/homework.dart';
 import '../../DataAccessLayer/Models/subject_image.dart';
 import '../../DataAccessLayer/Models/subject.dart';
+import '../../DataAccessLayer/Models/subject_file.dart';
 import '../../DataAccessLayer/Repositories/subject_repo.dart';
 
 class SubjectsController extends GetxController {
@@ -10,6 +11,7 @@ class SubjectsController extends GetxController {
   List<Subject> subjects = [];
   List<SubjectImage> subjectImages = [];
   List<Homework> homeworks = [];
+  List<SubjectFile> subjectFiles = [];
   var loading = false.obs;
   final storage = GetStorage();
 
@@ -19,49 +21,42 @@ class SubjectsController extends GetxController {
     await getSubjects();
   }
 
-
-////////جلب المواد /////
   Future<void> getSubjects() async {
     loading.value = true;
     await Future.delayed(Duration(seconds: 1)); // للتأكد من تخزين التوكن قبل قراءته
     String? token = storage.read('userToken'); // قراءة التوكن من GetStorage
-    print("Token: $token"); // تأكد من طباعة التوكن
     if (token != null) {
       subjects = await repo.getSubjects(token);
-      print("Subjects: $subjects"); // تأكد من طباعة المواد بعد جلبها
-    } else {
-      print("No token found!");
     }
     update();
     loading.value = false;
   }
 
-
-////////////جلب صور مادة معينة////////////
   Future<void> getSubjectImages(String id) async {
     loading.value = true;
     String? token = storage.read('userToken'); // قراءة التوكن من GetStorage
-    print("Token: $token"); // تأكد من طباعة التوكن
     if (token != null) {
       subjectImages = await repo.getSubjectImages(id, token);
-      print("Subject Images: $subjectImages"); // تأكد من طباعة صور المادة بعد جلبها
-    } else {
-      print("No token found!");
     }
     update();
     loading.value = false;
   }
 
-  ////////// جلب وظائف مادة معينة//////
   Future<void> getHomeworks(String id) async {
     loading.value = true;
     String? token = storage.read('userToken'); // قراءة التوكن من GetStorage
-    print("Token: $token"); // تأكد من طباعة التوكن
     if (token != null) {
       homeworks = await repo.getHomeworks(id, token);
-      print("Subject Homeworks: $homeworks"); // تأكد من طباعة وظائف المادة بعد جلبها
-    } else {
-      print("No token found!");
+    }
+    update();
+    loading.value = false;
+  }
+
+  Future<void> getSubjectFiles(String id) async {
+    loading.value = true;
+    String? token = storage.read('userToken'); // قراءة التوكن من GetStorage
+    if (token != null) {
+      subjectFiles = await repo.getSubjectFiles(id, token);
     }
     update();
     loading.value = false;

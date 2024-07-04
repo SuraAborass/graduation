@@ -3,15 +3,18 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../../../Constants/colors.dart';
+import '../../../../Constants/get_routes.dart';
 import '../../../../Constants/text_styles.dart';
 
-class AlertsItem extends StatelessWidget {
-  const AlertsItem({super.key});
+class NotesItem extends StatelessWidget {
+  const NotesItem({super.key});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        Get.toNamed(AppRoutes.notes);
+      },
       child: Stack(
         children: [
           Container(
@@ -24,7 +27,7 @@ class AlertsItem extends StatelessWidget {
             height: 114,
           ),
           Positioned( top: 15,right:20,
-            child: Text('التنبيهات',
+            child: Text('الملاحظات',
               style: UITextStyle.bodyNormal.copyWith(color: UIColors.white,fontSize: 25),),),
           Positioned(top: 50,right: 80,
               child: Container(height: 80, width: 110,

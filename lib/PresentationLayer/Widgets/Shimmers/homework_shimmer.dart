@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation/PresentationLayer/Shimmers/shimmer.dart';
+import 'package:graduation/PresentationLayer/Widgets/Shimmers/shimmer.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:get/get.dart';
 import '../../../Constants/colors.dart';
