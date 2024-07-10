@@ -44,9 +44,22 @@ final SubjectsController subjectsController = Get.find();
                     },
                   ),
                 )
-                    : Center(
-                  child: Text("لا يوجد صور لعرضها!",
-                    style: UITextStyle.titleBold.copyWith(color: UIColors.black),),
+                    : SizedBox(
+                  height: Get.height - 200,
+                  child: Center(
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        Text(
+                          "لايوجد صور!",
+                          style: UITextStyle.titleBold.copyWith(
+                              fontSize: 16,
+                              color: UIColors.lightBlack),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               }
           ),

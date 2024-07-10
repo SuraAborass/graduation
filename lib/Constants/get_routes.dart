@@ -16,7 +16,8 @@ class AppRoutes {
   static const subjectImages = "/home/subjects/subjectImages";
   static const subjectFiles = "/home/subjects/subjectFiles";
   static const viewImage = "/home/subjects/subjectImages/viewImage";
-  static const years = "/home/years";
-
+  static const archiveSubjects = "/home/archiveSubjects";
+  static const archiveYears = "/home/archiveSubjects/archiveYears";
+  static const courses = "/home/courses";
 
 }

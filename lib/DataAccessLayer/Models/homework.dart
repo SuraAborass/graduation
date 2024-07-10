@@ -14,15 +14,20 @@ class Homework {
   });
 
   factory Homework.fromMap(Map<String, dynamic> map) {
-    var filePath = map['file_image_info'] != null && map['file_image_info'].isNotEmpty
-        ? map['file_image_info'][0]['image_url'] as String
+    var homeworkInfo = map['homework_info'];
+    var subject = homeworkInfo['subject'];
+    var accessories = homeworkInfo['accessories'] ?? [];
+
+    var filePath = accessories.isNotEmpty
+        ? accessories[0]['image_file_url'] as String
         : "";
+
     return Homework(
-      id: map['id'] as int,
-      description: map['description'],
+      id: homeworkInfo['id'] as int,
+      description: homeworkInfo['description'] as String,
       path: filePath,
       hasAttachment: filePath.isNotEmpty,
-      subjectName: map['subject_name'] ?? "No Subject Name",
+      subjectName: subject != null ? subject['name'] as String : "",
     );
   }
 }

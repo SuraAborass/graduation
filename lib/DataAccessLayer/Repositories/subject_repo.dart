@@ -29,18 +29,12 @@ class SubjectsRepo {
   Future<List<Homework>> getHomeworks(String id, String token) async {
     var response = await client.getHomeworks(id, token);
     if (response != "") {
-      final jsonResponse = json.decode(response);
-      if (jsonResponse['status'] == "true") {
-        final List<dynamic> data = jsonResponse['homeworks'];
-        return data.map<Homework>((json) => Homework.fromMap(json)).toList();
-      } else {
-        print('Error: Invalid response status');
-      }
-    } else {
-      print('Error: Empty response');
+      final List<dynamic> data = json.decode(response);
+      return data.map<Homework>((json) => Homework.fromMap(json)).toList();
     }
     return [];
   }
+
 
   Future<List<SubjectFile>> getSubjectFiles(String id, String token) async {
     var response = await client.getSubjectFiles(id, token);

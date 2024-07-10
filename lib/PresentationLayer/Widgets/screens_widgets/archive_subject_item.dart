@@ -12,7 +12,7 @@ class ArchiveSubjectItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.toNamed(AppRoutes.years,arguments: {'subjectId': subject.id});
+        Get.toNamed(AppRoutes.archiveYears,arguments: {'subjectId': subject.id});
       },
       child: Container(
         decoration: BoxDecoration(

@@ -11,9 +11,9 @@ class Program {
 
   factory Program.fromMap(Map<String, dynamic> map) {
     return Program(
-      id: map['image_info']['id'] as int,
-      url: map['image_info']['image_file_url'] as String,
-      type: map['program']['type'] as String,
+      id: map['id'] as int,
+      url: map['image_file_url'] as String,
+      type: map['type'] as String,
     );
   }
 }

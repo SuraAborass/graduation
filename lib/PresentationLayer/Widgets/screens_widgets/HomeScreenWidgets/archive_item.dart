@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../Constants/colors.dart';
 import '../../../../Constants/get_routes.dart';
 import '../../../../Constants/text_styles.dart';
@@ -12,7 +11,7 @@ class ArchiveItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.toNamed(AppRoutes.subjects);
+        Get.toNamed(AppRoutes.archiveSubjects);
       },
       child: Stack(
         children: [

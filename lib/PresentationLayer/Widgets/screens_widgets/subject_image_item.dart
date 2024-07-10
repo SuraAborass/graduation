@@ -21,7 +21,7 @@ class SubjectImageItem extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(
               color: UIColors.primary, // نفس لون الخلفية
-              width: 5.0, // سماكة الإطار
+              width: 2.0, // سماكة الإطار
             ),
             borderRadius: BorderRadius.circular(20),
             color: UIColors.primary,
@@ -40,8 +40,11 @@ class SubjectImageItem extends StatelessWidget {
         ,
       ),
       subtitle: Center(
-        child: Text(subjectImage.description,
-          style: UITextStyle.titleBold.copyWith(color:UIColors.black),),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text(subjectImage.description,
+            style: UITextStyle.titleBold.copyWith(color:UIColors.black),),
+        ),
       ),
     );
   }

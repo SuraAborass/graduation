@@ -1,4 +1,4 @@
-const baseLink = "http://10.65.0.99:8000/api/";
+const baseLink = "http://192.168.43.99:8000/api/";
 const loginLink = "out_user/login";
 const subjects = "student/my_subject";
 const images = "student/img_subject";
@@ -8,3 +8,4 @@ const program = "student/my_programe";
 const notes = "student/my_note";
 const ads = "all_publish";
 const orderToCourse = "student/create-order-course";
+const courses = "student/my_course";

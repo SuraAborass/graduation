@@ -30,6 +30,13 @@ class HomeworkItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    IconData iconData = Icons.task;
+    if (homework.path.endsWith('.jpg') || homework.path.endsWith('.png')) {
+      iconData = Icons.image;
+    } else if (homework.path.endsWith('.pdf')) {
+      iconData = Icons.picture_as_pdf;
+    }
+
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: InkWell(
@@ -48,7 +55,7 @@ class HomeworkItem extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 child: Icon(
-                  Icons.task,
+                  iconData,
                   color: UIColors.iconColor,
                   size: 40,
                 ),

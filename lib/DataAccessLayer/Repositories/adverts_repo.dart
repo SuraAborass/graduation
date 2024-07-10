@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'package:http/http.dart' as http;
+import '../../Constants/links.dart';
 import '../Clients/adverts_client.dart';
 import '../Models/advert.dart';
 
 class AdvertsRepo {
   AdvertsClient client = AdvertsClient();
+
   Future<List<Advert>> getAdverts() async {
     var response = await client.getAdverts();
     if (response != "") {
@@ -18,5 +21,16 @@ class AdvertsRepo {
       print('Error: Empty response');
     }
     return [];
+  }
+
+  Future<bool> registerCourse(int courseId, String token) async {
+    final response = await client.registerForCourse(courseId, token);
+    if (response != null && response['data'] == 'success') {
+      return true;
+    } else if (response != null && response['message'] == 'you can not do that you have order for this course') {
+      return false;
+    } else {
+      throw Exception('Failed to register for course');
+    }
   }
 }

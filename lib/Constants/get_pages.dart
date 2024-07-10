@@ -6,6 +6,7 @@ import '../PresentationLayer/Screens/OutUserScreens/teachers_screen.dart';
 import '../PresentationLayer/Screens/Public/adverts_screen.dart';
 import '../PresentationLayer/Screens/Public/all_adverts.dart';
 import '../PresentationLayer/Screens/Public/arachive_subjects_screen.dart';
+import '../PresentationLayer/Screens/Public/courses_screen.dart';
 import '../PresentationLayer/Screens/Public/home_screen.dart';
 import '../PresentationLayer/Screens/Public/homeworks_screen.dart';
 import '../PresentationLayer/Screens/Public/notes_screen.dart';
@@ -17,6 +18,7 @@ import '../PresentationLayer/Screens/Public/subject_files_screen.dart';
 import '../PresentationLayer/Screens/Public/subject_images_screen.dart';
 import '../PresentationLayer/Screens/Public/subjects_screen.dart';
 import '../PresentationLayer/Screens/Public/subjects_with_homework_screen.dart';
+import '../PresentationLayer/Screens/Public/years_archive_screen.dart';
 import 'get_routes.dart';
 
 List<GetPage<dynamic>> getPages = [
@@ -74,7 +76,13 @@ List<GetPage<dynamic>> getPages = [
     name: AppRoutes.ads,
     page: () =>  AdvertsScreen(),),
   GetPage(
-    name: AppRoutes.years,
+    name: AppRoutes.archiveSubjects,
     page: () =>  ArchiveSubjectsScreen(),),
+  GetPage(
+    name: AppRoutes.archiveYears,
+    page: () =>  YearsArchiveScreen(),),
+  GetPage(
+    name: AppRoutes.courses,
+    page: () =>  CoursesScreen(),),
 
 ];

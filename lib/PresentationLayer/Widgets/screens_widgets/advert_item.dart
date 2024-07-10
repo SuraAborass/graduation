@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../BusinessLayer/Controllers/adverts_controller.dart';
 import '../../../Constants/colors.dart';
 import '../../../Constants/text_styles.dart';
 import '../../../DataAccessLayer/Models/advert.dart';
@@ -9,13 +11,15 @@ class AdvertItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AdvertsController controller = Get.find();
+
     return Container(
       padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.only(bottom: 20), // Increase the bottom margin to add more space between ads
+      margin: const EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            UIColors.white.withOpacity(0.7),
+            UIColors.gray.withOpacity(0.7),
             UIColors.lightBlack.withOpacity(0.7),
           ],
           begin: Alignment.bottomCenter,
@@ -40,8 +44,8 @@ class AdvertItem extends StatelessWidget {
           if (advert.image.isNotEmpty)
             Center(
               child: Container(
-                width: double.infinity, // Set the container width to full width
-                height: 200, // Set a fixed height for the image container
+                width: double.infinity,
+                height: 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
@@ -58,17 +62,25 @@ class AdvertItem extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Center(
-            child: MaterialButton(
-              height: 56,
-              minWidth: double.infinity, // Set the button width to full width
-              color: UIColors.primary,
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
-              child: const Text('تسجيل', style: UITextStyle.titleBold),
-              onPressed: () {
-                // Add your onPressed logic here
-              },
-            ),
+            child: Obx(() {
+              final isRegistered = controller.registeredCourses.contains(advert.courseId);
+              return MaterialButton(
+                height: 56,
+                minWidth: double.infinity,
+                color: isRegistered ? Colors.grey : UIColors.primary,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                child: Text(
+                  isRegistered ? 'مسجل بالفعل' : 'تسجيل',
+                  style: UITextStyle.titleBold,
+                ),
+                onPressed: isRegistered
+                    ? null
+                    : () {
+                  controller.registerForCourse(advert.courseId!);
+                },
+              );
+            }),
           ),
         ],
       ),
