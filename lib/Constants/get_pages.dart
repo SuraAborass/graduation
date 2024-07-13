@@ -4,13 +4,15 @@ import '../PresentationLayer/Screens/Auth/registration_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/out_home_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/teachers_screen.dart';
 import '../PresentationLayer/Screens/Public/adverts_screen.dart';
-import '../PresentationLayer/Screens/Public/all_adverts.dart';
 import '../PresentationLayer/Screens/Public/arachive_subjects_screen.dart';
 import '../PresentationLayer/Screens/Public/courses_screen.dart';
+import '../PresentationLayer/Screens/Public/discussions_screen.dart';
+import '../PresentationLayer/Screens/Public/exam_results_screen.dart';
 import '../PresentationLayer/Screens/Public/home_screen.dart';
 import '../PresentationLayer/Screens/Public/homeworks_screen.dart';
 import '../PresentationLayer/Screens/Public/notes_screen.dart';
 import '../PresentationLayer/Screens/Public/notifications_screen.dart';
+import '../PresentationLayer/Screens/Public/one_discussion_screen.dart';
 import '../PresentationLayer/Screens/Public/profile_screen.dart';
 import '../PresentationLayer/Screens/Public/program_screen.dart';
 import '../PresentationLayer/Screens/Public/splash_screen.dart';
@@ -84,5 +86,14 @@ List<GetPage<dynamic>> getPages = [
   GetPage(
     name: AppRoutes.courses,
     page: () =>  CoursesScreen(),),
+  GetPage(
+    name: AppRoutes.discussions,
+    page: () =>  DiscussionsScreen(),),
+  GetPage(
+    name: AppRoutes.oneDiscussion,
+    page: () =>  OneDiscussionScreen(),),
+  GetPage(
+    name: AppRoutes.results,
+    page: () =>  ExamResultsScreen(),),
 
 ];

@@ -7,5 +7,5 @@ const teachers = "out_user/all-teatcher";
 const program = "student/my_programe";
 const notes = "student/my_note";
 const ads = "all_publish";
-const orderToCourse = "student/create-order-course";
 const courses = "student/my_course";
+const discussions = "student/display_all_post";

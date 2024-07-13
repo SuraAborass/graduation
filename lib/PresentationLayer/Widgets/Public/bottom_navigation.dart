@@ -22,7 +22,7 @@ class InstituteBottomNavigationBar extends StatelessWidget {
             Get.toNamed(AppRoutes.notifications);
             break;
           case 2:
-            //Get.toNamed(AppRoutes.program);
+            Get.toNamed(AppRoutes.discussions);
             break;
           case 3:
             Get.toNamed(AppRoutes.profile);

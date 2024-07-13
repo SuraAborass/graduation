@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
-
 import '../../../../Constants/colors.dart';
 import '../../../../Constants/get_routes.dart';
 import '../../../../Constants/text_styles.dart';
-import '../../../Screens/Public/all_adverts.dart';
+
 
 class AdvertisementsItem extends StatelessWidget {
   const AdvertisementsItem({super.key});
