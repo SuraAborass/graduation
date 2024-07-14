@@ -8,6 +8,9 @@ import '../../Widgets/Public/institute_appbar.dart';
 class OneDiscussionScreen extends StatelessWidget {
   OneDiscussionScreen({super.key});
 
+  final TextEditingController _commentController = TextEditingController();
+  String? editingComment;
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -44,7 +47,14 @@ class OneDiscussionScreen extends StatelessWidget {
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                           (context, index) {
-                        return DiscussionItem();
+                        return DiscussionItem(
+                          onEdit: (comment) {
+                            setState(() {
+                              editingComment = comment;
+                              _commentController.text = comment;
+                            });
+                          },
+                        );
                       },
                       childCount: 5,
                     ),
@@ -58,6 +68,7 @@ class OneDiscussionScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextField(
+                      controller: _commentController,
                       decoration: InputDecoration(
                         hintText: 'اكتب تعليق...',
                         border: OutlineInputBorder(
@@ -69,7 +80,18 @@ class OneDiscussionScreen extends StatelessWidget {
                   ),
                   IconButton(
                     icon: Icon(Icons.send, color: UIColors.primary),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (editingComment != null) {
+                        // تابع تعديل التعليق
+                        setState(() {
+                          editingComment = null;
+                          _commentController.clear();
+                        });
+                      } else {
+                        // تابع إضافة تعليق جديد
+                        _commentController.clear();
+                      }
+                    },
                   ),
                 ],
               ),
@@ -79,41 +101,77 @@ class OneDiscussionScreen extends StatelessWidget {
       ),
     );
   }
+
+  void setState(Null Function() param0) {}
 }
 
 class DiscussionItem extends StatelessWidget {
+  final Function(String) onEdit;
+
+  DiscussionItem({required this.onEdit});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 30,
-            backgroundImage: AssetImage('assets/images/teacher-ph.jpg'), // تأكد من توفير URL صالح للصورة
-          ),
-          SizedBox(width: 10),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                color: Colors.grey[500],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'سرى أبو راس',
-                    style: UITextStyle.titleBold.copyWith(fontSize: 16),
-                  ),
-                  Text(
-                    'حسب المبدأ الأساسي في العد يوجد 8400 طريقة',
-                    style: UITextStyle.titleNormal.copyWith(fontSize: 14),
-                  ),
-                ],
+    return GestureDetector(
+      onTap: () {
+        showCommentDialog(context);
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 30,
+              backgroundImage: AssetImage('assets/images/teacher-ph.jpg'),
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: Colors.grey[500],
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'سرى أبو راس',
+                      style: UITextStyle.titleBold.copyWith(fontSize: 16),
+                    ),
+                    Text(
+                      'حسب المبدأ الأساسي في العد يوجد 8400 طريقة',
+                      style: UITextStyle.titleNormal.copyWith(fontSize: 14),
+                    ),
+                  ],
+                ),
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void showCommentDialog(BuildContext context) {
+    Get.dialog(
+      AlertDialog(
+        title: Text('خيارات التعليق', style: UITextStyle.titleBold.copyWith(color: UIColors.black)),
+        content: Text('اختر إجراءً لهذا التعليق', style: UITextStyle.titleNormal.copyWith(color: UIColors.black)),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.back();
+              onEdit('حسب المبدأ الأساسي في العد يوجد 8400 طريقة');
+            },
+            child: Text('تعديل', style: TextStyle(color: UIColors.primary)),
+          ),
+          TextButton(
+            onPressed: () {
+              Get.back();
+              //   تابع الحذف
+            },
+            child: Text('حذف', style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
