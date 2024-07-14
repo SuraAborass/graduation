@@ -39,7 +39,7 @@ class CommentQuostion {
       section_id: json["section_id"],
       teacher_id: json["teacher_id"],
       comments: Comment.fromJsonList(json),
-      subject: Subject.fromMap(json["subject"]));
+      subject:json["subject"]==null? Subject.zero(): Subject.fromMap(json["subject"]));
 }
 
 class Comment {
