@@ -9,6 +9,7 @@ class Subject {
     required this.name,
     required this.successRate,
   });
+  factory Subject.zero()=>Subject(id: 0, name: "", successRate: 0);
 
   factory Subject.fromMap(Map<String, dynamic> map) {
     return Subject(
