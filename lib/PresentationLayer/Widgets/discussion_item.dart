@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graduation/BusinessLayer/Controllers/discussions_controller.dart';
 import 'package:graduation/Constants/colors.dart';
 import 'package:graduation/Constants/get_routes.dart';
 import '../../Constants/text_styles.dart';
 import '../../DataAccessLayer/Models/discussion.dart';
 
 class DiscussionItem extends StatelessWidget {
-  const DiscussionItem({super.key, required this.discussion});
+   DiscussionItem({super.key, required this.discussion});
   final Discussion discussion;
+  DiscussionsController discussionsController = Get.put(DiscussionsController());
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,7 @@ class DiscussionItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Get.toNamed(AppRoutes.oneDiscussion);
+          discussionsController.getComments(discussion.id);
         },
         child: Container(
           width: 373,

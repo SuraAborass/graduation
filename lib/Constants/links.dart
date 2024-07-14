@@ -9,3 +9,7 @@ const notes = "student/my_note";
 const ads = "all_publish";
 const courses = "student/my_course";
 const discussions = "student/display_all_post";
+String getComment(int postId) =>"student/post/$postId";
+String add_Comment(int postId) => "student/add_comment/$postId";
+String edit_comment(int commentId) => "student/edit_comment/$commentId";
+String delete_comment(int commentId)=>"student/delete_comment/$commentId";
