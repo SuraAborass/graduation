@@ -18,4 +18,21 @@ class UserRepo {
     }
     return null;
   }
+
+  Future<User?> updateInfo(String token, String phone, String password, String confPassword, String address, String? image) async {
+    print("Token: $token");
+    print("Phone: $phone");
+    print("Password: $password");
+    print("Confirm Password: $confPassword");
+    print("Address: $address");
+    print("Image Path: $image");
+
+    var response = await client.updateInfo(token, phone, password, confPassword, address, image);
+
+    if (response != null) {
+      return User.fromMap(jsonDecode(response));
+    }
+    return null;
+  }
+
 }

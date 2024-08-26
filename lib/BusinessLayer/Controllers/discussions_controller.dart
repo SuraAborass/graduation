@@ -41,6 +41,7 @@ class DiscussionsController extends GetxController{
     await commentsState.observe((p0)async {
       return await commentService.getComments(postId);
     },
+
       onSuccess: (p0){
       print("this is rx future");
       print(p0);
@@ -49,6 +50,7 @@ class DiscussionsController extends GetxController{
       print("this error");
       print(error.toString());
       }
+
     );
   }
 

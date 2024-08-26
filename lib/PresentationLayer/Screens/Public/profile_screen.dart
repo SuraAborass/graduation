@@ -1,15 +1,22 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import '../../../BusinessLayer/Controllers/profile_controller.dart';
 import '../../../Constants/colors.dart';
 import '../../../Constants/text_styles.dart';
 import '../../../Constants/ui_styles.dart';
+import '../../../main.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../Widgets/Public/Drawer.dart';
 import '../../Widgets/Public/bottom_navigation.dart';
 import '../../Widgets/Public/institute_appbar.dart';
 import '../../Widgets/Public/text_form_field.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +53,20 @@ class ProfileScreen extends StatelessWidget {
                             flex: 1,
                             child: Stack(
                               children: [
-                                const CircleAvatar(
+                                Obx(() => CircleAvatar(
                                   backgroundColor: UIColors.primary,
                                   minRadius: 52,
                                   child: CircleAvatar(
                                     backgroundColor: UIColors.white,
                                     minRadius: 50,
-                                    backgroundImage: AssetImage(
-                                      'assets/images/studentschool.png',
-                                    ),
+                                    backgroundImage: profileController
+                                        .isProfilePicPathSet.value
+                                        ? FileImage(File(profileController
+                                        .profilePicPath.value)) as ImageProvider
+                                        : CachedNetworkImageProvider(MyApp
+                                        .appUser!.image),
                                   ),
-                                ),
+                                )),
                                 Positioned(
                                   bottom: 0,
                                   child: IconButton(
@@ -80,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
                           Expanded(
                             flex: 1,
                             child: Text(
-                              "سرى خالد أبوراس",
+                              "${MyApp.appUser!.firstName} ${MyApp.appUser!.fatherName} ${MyApp.appUser!.lastName}",
                               style: UITextStyle.titleBold.copyWith(
                                 fontSize: 20,
                                 color: UIColors.primary,
@@ -99,42 +109,65 @@ class ProfileScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             InstituteTextFormField(
+                              controller: profileController.updatePhoneController,
                               hintText: 'رقم الهاتف',
                               borderColor: UIColors.primary,
                             ),
                             const SizedBox(height: 10),
                             InstituteTextFormField(
+                              controller: profileController.updateAddressController,
                               hintText: 'العنوان',
                               borderColor: UIColors.primary,
                             ),
                             const SizedBox(height: 10),
                             InstituteTextFormField(
+                              controller: profileController.updatePasswordController,
                               hintText: 'تغيير كلمة المرور',
                               borderColor: UIColors.primary,
+                              obscureText: true,
+                            ),
+                            const SizedBox(height: 10),
+                            InstituteTextFormField(
+                              controller: profileController.updateConfirmPasswordController,
+                              hintText: 'تأكيد كلمة المرور',
+                              borderColor: UIColors.primary,
+                              obscureText: true,
                             ),
                             const SizedBox(height: 18),
                             SizedBox(
                               width: Get.width,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  //await profileController.updateInfo();
-                                },
-                                style: profileButtonStyle.copyWith(
-                                  backgroundColor:
-                                  MaterialStateProperty.all(UIColors.primary),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'تحديث معلوماتك',
-                                      style: UITextStyle.titleBold
-                                          .copyWith(fontSize: 15, color: UIColors.white),
+                              child: Obx(() {
+                                return SizedBox(
+                                  width: Get.width,
+                                  child: ElevatedButton(
+                                    onPressed: profileController.loading.value
+                                        ? null
+                                        : () {
+                                      profileController.updateInfo();
+                                    },
+                                    style: profileButtonStyle.copyWith(
+                                      backgroundColor: MaterialStateProperty.all(
+                                        profileController.loading.value ? UIColors.gray : UIColors.primary,
+                                      ),
+                                    ),
+                                    child: profileController.loading.value
+                                        ? CircularProgressIndicator(
+                                      color: UIColors.white,
                                     )
-                                  ],
-                                ),
-                              ),
+                                        : Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'تحديث معلوماتك',
+                                          style: UITextStyle.titleBold
+                                              .copyWith(fontSize: 15, color: UIColors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
                             ),
                           ],
                         ),
@@ -158,7 +191,7 @@ class ProfileScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-           Padding(
+          Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
               "تعيين صورة الملف الشخصي",
@@ -175,7 +208,7 @@ class ProfileScreen extends StatelessWidget {
                 child: ListTile(
                   title: InkWell(
                     onTap: () {
-                      //profileController.takePhoto(ImageSource.camera);
+                      profileController.takePhoto(ImageSource.camera);
                     },
                     child: const Icon(
                       Icons.camera_alt_outlined,
@@ -183,8 +216,8 @@ class ProfileScreen extends StatelessWidget {
                       size: 40,
                     ),
                   ),
-                  subtitle:  Text(
-                    "Camera",
+                  subtitle: Text(
+                    "كاميرا",
                     style: UITextStyle.titleBold.copyWith(color: UIColors.primary),
                     textAlign: TextAlign.center,
                   ),
@@ -195,7 +228,7 @@ class ProfileScreen extends StatelessWidget {
                 child: ListTile(
                   title: InkWell(
                     onTap: () {
-                      //profileController.takePhoto(ImageSource.gallery);
+                      profileController.takePhoto(ImageSource.gallery);
                     },
                     child: const Icon(
                       Icons.image,
@@ -203,8 +236,8 @@ class ProfileScreen extends StatelessWidget {
                       size: 40,
                     ),
                   ),
-                  subtitle:  Text(
-                    "Gallery",
+                  subtitle: Text(
+                    "معرض",
                     style: UITextStyle.titleBold.copyWith(color: UIColors.primary),
                     textAlign: TextAlign.center,
                   ),

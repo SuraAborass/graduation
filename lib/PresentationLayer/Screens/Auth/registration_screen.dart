@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graduation/PresentationLayer/Widgets/Public/text_form_field.dart';
-
-import '../../../BusinessLayer/Controllers/registration_order_controller.dart';
 import '../../../Constants/colors.dart';
 import '../../../Constants/text_styles.dart';
 import '../../../Constants/ui_styles.dart';
 import '../../Widgets/Public/AppBar.dart';
+import '../../../BusinessLayer/Controllers/registration_order_controller.dart';
+import '../../Widgets/Public/text_form_field.dart';
 
-class RegistrationOrderScreen extends StatefulWidget {
-   RegistrationOrderScreen({super.key});
-
-
-  @override
-  State<RegistrationOrderScreen> createState() => _RegistrationOrderScreenState();
-}
-
-class _RegistrationOrderScreenState extends State<RegistrationOrderScreen> {
+class RegistrationOrderScreen extends StatelessWidget {
   final RegistrationOrderController registrationController =
   Get.put(RegistrationOrderController());
 
@@ -31,130 +22,145 @@ class _RegistrationOrderScreenState extends State<RegistrationOrderScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-               const InstituteTextFormField(
+                InstituteTextFormField(
                   hintText: 'الاسم الأول',
+                  controller: registrationController.firstNameController,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InstituteTextFormField(
+                SizedBox(height: 10),
+                InstituteTextFormField(
                   hintText: 'الاسم الأخير',
+                  controller: registrationController.lastNameController,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InstituteTextFormField(
+                SizedBox(height: 10),
+                InstituteTextFormField(
                   hintText: 'اسم الأب',
+                  controller: registrationController.fatherNameController,
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(height: 10),
+                TextFormField(
+                  controller: registrationController.birthDateController,
+                  decoration: textFieldStyle.copyWith(
+                    hintText: ' تاريخ الميلاد',
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.calendar_today, color: UIColors.primary),
+                      onPressed: () {
+                        registrationController.selectBirthDate(context);
+                      },
+                    ),
+                  ),
+                  readOnly: true,
                 ),
-                const InstituteTextFormField(
-                  hintText: 'اسم الأم',
+                SizedBox(height: 10),
+                InstituteTextFormField(
+                  hintText: 'رقم الهاتف',
+                  controller: registrationController.phoneController,
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(height: 10),
+                InstituteTextFormField(
+                  hintText: 'العنوان',
+                  controller: registrationController.addressController,
                 ),
+                SizedBox(height: 10),
+                InstituteTextFormField(
+                  hintText: 'السنة الدراسية', // حقل إدخال السنة
+                  controller: registrationController.yearController,
+                ),
+                SizedBox(height: 10),
+              Obx(() => TextFormField(
+                decoration: textFieldStyle.copyWith(
+                  suffixIcon: DropdownButton<String>(
+                    icon: Icon(
+                      Icons.arrow_drop_down,
+                      color: UIColors.primary,
+                      size: 36,
+                    ),
+                    isExpanded: true,
+                    hint: Text('الجنس',
+                        style: UITextStyle.smallBodyNormal),
+                    value: registrationController
+                        .selecteGenderValue.value.isEmpty
+                        ? null
+                        : (registrationController.selecteGenderValue.value == '1'
+                        ? 'ذكر'
+                        : 'أنثى'),  // عرض القيم بناءً على 0 أو 1
+                    items: ['ذكر', 'أنثى'].map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value,
+                            style: UITextStyle.smallBodyNormal),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      registrationController.setGenderValue(newValue!);
+                    },
+                    iconSize: 0,
+                    underline: SizedBox(),
+                  ),
+                ),
+                controller: TextEditingController(
+                    text: registrationController.selecteGenderValue.value == '1'
+                        ? 'ذكر'
+                        : 'أنثى'),  // عرض القيم بناءً على 0 أو 1
+              )),
+                SizedBox(height: 10),
                 Obx(() => TextFormField(
                   decoration: textFieldStyle.copyWith(
                     suffixIcon: DropdownButton<String>(
-                      icon: const Icon(Icons.arrow_drop_down,color: UIColors.primary,size: 36,),
+                      icon: Icon(
+                        Icons.arrow_drop_down,
+                        color: UIColors.primary,
+                        size: 36,
+                      ),
                       isExpanded: true,
-                      // iconEnabledColor: UIColors.primary,
-                      hint: const Text('الجنس',style: UITextStyle.smallBodyNormal,),
-                      value: registrationController.selecteGenderValue.value.isEmpty ? null : registrationController.selecteGenderValue.value,
-                      items: ['ذكر', 'أنثى'].map((String value) {
+                      hint: Text('اختر الصف',
+                          style: UITextStyle.smallBodyNormal),
+                      value: registrationController
+                          .selecteGradeValue.value.isEmpty
+                          ? null
+                          : registrationController.selecteGradeValue.value,
+                      items: [
+                        'الصف التاسع',
+                        'البكالوريا العلمي',
+                        'البكالوريا الأدبي'
+                      ].map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Text(value,style: UITextStyle.smallBodyNormal,),
+                          child: Text(value,
+                              style: UITextStyle.smallBodyNormal),
                         );
                       }).toList(),
                       onChanged: (newValue) {
-                        registrationController.setGenderValue(newValue!);
+                        registrationController.setGradeValue(newValue!);
                       },
-                      // لمنع القائمة المنسدلة من تمديد عرضها
                       iconSize: 0,
                       underline: SizedBox(),
                     ),
                   ),
-                  controller: TextEditingController(text: registrationController.selecteGenderValue.value),
+                  controller: TextEditingController(
+                      text: registrationController.selecteGradeValue.value),
                 )),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InstituteTextFormField(
-                  hintText: '(YY-MM-DD)تاريخ الميلاد',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InstituteTextFormField(
-                  hintText: 'رقم الهاتف',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InstituteTextFormField(
-                  hintText: 'العنوان',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-            Obx(() => TextFormField(
-              decoration: textFieldStyle.copyWith(
-                suffixIcon: DropdownButton<String>(
-                  icon: const Icon(Icons.arrow_drop_down,color: UIColors.primary,size: 36,),
-                 isExpanded: true,
-                 // iconEnabledColor: UIColors.primary,
-                  hint: const Text(' اختر الصف',style: UITextStyle.smallBodyNormal,),
-                  value: registrationController.selecteGradeValue.value.isEmpty ? null : registrationController.selecteGradeValue.value,
-                  items: ['الصف التاسع', 'البكالوريا العلمي', 'البكالوريا الأدبي'].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value,style: UITextStyle.smallBodyNormal,),
-                    );
-                  }).toList(),
-                  onChanged: (newValue) {
-                    registrationController.setGradeValue(newValue!);
-                  },
-                  // لمنع القائمة المنسدلة من تمديد عرضها
-                  iconSize: 0,
-                  underline: SizedBox(),
-                ),
-              ),
-              controller: TextEditingController(text: registrationController.selecteGradeValue.value),
-            )),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InstituteTextFormField(
-                  hintText: 'رقم الهاتف',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const InstituteTextFormField(
-                  hintText: 'العنوان',
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                MaterialButton(
-                    height: 56,
-                    minWidth: Get.width,
-                    color: UIColors.primary,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(20.0))),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                         Text('حفظ', style: UITextStyle.titleBold)
-                      ],
-                    ),
-                    onPressed: () {},
+                SizedBox(height: 20),
+                Obx(() => MaterialButton(
+                  height: 56,
+                  minWidth: Get.width,
+                  color: UIColors.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
                   ),
+                  child: registrationController.isSubmitting.value
+                      ? CircularProgressIndicator(
+                    color: Colors.white,
+                  )
+                      : registrationController.isSubmitted.value
+                      ? Text('تم إرسال الطلب', style: UITextStyle.titleBold.copyWith(color: UIColors.primary))
+                      : Text('حفظ', style: UITextStyle.titleBold),
+                  onPressed: registrationController.isSubmitting.value ||
+                      registrationController.isSubmitted.value
+                      ? null
+                      : () {
+                    registrationController.submitForm();
+                  },
+                )),
               ],
             ),
           ),

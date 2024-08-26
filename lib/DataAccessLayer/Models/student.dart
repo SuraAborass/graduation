@@ -3,67 +3,55 @@ import 'dart:convert';
 
 class Student {
   final int id;
-  final String image;
   final String firstName;
-  final String secondName;
-  final String classroom;
-  final String grade;
-  final int gradeId;
-  final String motherName;
+  final String lastName;
   final String fatherName;
   final String birthDate;
-  final String nationality;
-  final String payType;
   final String gender;
+  final String phone;
+  final String address;
+  final String grade;
+  final String year;
   Student({
     required this.id,
     required this.firstName,
-    required this.secondName,
-    required this.image,
-    required this.classroom,
-    required this.grade,
-    required this.motherName,
+    required this.lastName,
     required this.fatherName,
     required this.birthDate,
-    required this.nationality,
-    required this.payType,
     required this.gender,
-    required this.gradeId
+    required this.phone,
+    required this.address,
+    required this.grade,
+    required this.year,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
       'first_name' : firstName,
-      'second_name': secondName,
-      'image': image,
-      'classroom': classroom,
-      'grade' : grade,
-      'grade_id' : gradeId,
-      'mother_name': motherName,
-      'father_name' : fatherName,
-      'birth_date': birthDate,
-      'nationality' : nationality,
-      'pay_type' : payType,
-      'gender' : gender
+      'last_name': lastName,
+      'father_name': fatherName,
+      'birthday': birthDate,
+      'gender' : gender,
+      'phone' : phone,
+      'address': address,
+      'class' : grade,
+      'year' : year,
     };
   }
 
   factory Student.fromMap(Map<String, dynamic> map) {
     return Student(
       id: map['id']?.toInt() ?? 0,
-      firstName: map['first_name'],
-      secondName: map['second_name'],
-      image: map['image'] ?? '',
-      classroom: map['classroom'] ?? '',
-      grade: map['grade'] ?? '',
-      gradeId: map['grade_id'] ?? 0,
-      motherName: map['mother_name'] ?? '',
+      firstName: map['first_name']?? '',
+      lastName: map['last_name']?? '',
       fatherName: map['father_name'] ?? '',
-      birthDate: map['birth_date'].toString() ?? '',
-        nationality: map['nationality'],
-      payType: map['pay_type'] ?? '' ,
-      gender:  map['gender'] ?? ''
+      birthDate: map['birthday'].toString() ?? '',
+        gender: map['gender'] ?? '',
+        phone: map['phone'] ?? '',
+        address: map['address'] ?? '' ,
+      grade:  map['class'] ?? '',
+        year: map['year'] ?? ''
     );
   }
 

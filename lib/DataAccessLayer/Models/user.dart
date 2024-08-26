@@ -15,7 +15,7 @@ class User {
   final String image;
   final String email;
   final String userType;
-   String? token;
+   String token;
   User({
     required this.id,
     required this.firstName,

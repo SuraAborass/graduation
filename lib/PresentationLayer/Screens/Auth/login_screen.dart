@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                   filled: true,
                   fillColor: UIColors.white,
                   border: const OutlineInputBorder(),
-                  hintText: 'أدخل رقم هاتفك',
+                  hintText: 'أدخل الايميل الخاص بك',
                   hintStyle: UITextStyle.normalSmall,
                   enabledBorder: OutlineInputBorder(
                     borderSide:
@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                       },
                     ),
                     border: const OutlineInputBorder(),
-                    hintText: 'أدخل كلمة المرور الخاصة بك',
+                    hintText: 'أدخل كلمة المرور',
                     hintStyle: UITextStyle.normalSmall,
                     enabledBorder: OutlineInputBorder(
                       borderSide:
