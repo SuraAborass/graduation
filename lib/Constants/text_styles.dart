@@ -7,7 +7,8 @@ class UITextStyle {
   static const titleBold = TextStyle(
       color: UIColors.white, fontSize: 18, fontFamily: "Hacen Tunisia Bd");
   static const titleNormal = TextStyle(
-      color: UIColors.white, fontSize: 18, fontFamily: "Hacen Tunisia LT");
+      color: UIColors.white, fontSize: 18,
+      fontFamily: "Hacen Tunisia LT");
   static const bodyNormal = TextStyle(
       fontWeight: FontWeight.normal,
       color: UIColors.gray,

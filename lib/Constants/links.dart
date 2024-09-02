@@ -1,4 +1,4 @@
-const baseLink = "http://10.65.0.99:8000/api/";
+const baseLink = "http://10.65.1.71:8000/api/";
 const loginLink = "out_user/login";
 const subjects = "student/my_subject";
 const images = "student/img_subject";
