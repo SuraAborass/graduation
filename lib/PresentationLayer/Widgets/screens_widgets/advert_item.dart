@@ -4,6 +4,7 @@ import '../../../BusinessLayer/Controllers/adverts_controller.dart';
 import '../../../Constants/colors.dart';
 import '../../../Constants/text_styles.dart';
 import '../../../DataAccessLayer/Models/advert.dart';
+import '../../Screens/Public/view_image_screen.dart';
 
 class AdvertItem extends StatelessWidget {
   const AdvertItem({super.key, required this.advert});
@@ -43,14 +44,19 @@ class AdvertItem extends StatelessWidget {
           const SizedBox(height: 10),
           if (advert.image.isNotEmpty)
             Center(
-              child: Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
-                    image: NetworkImage(advert.image),
-                    fit: BoxFit.fill,
+              child: InkWell(
+                onTap: (){
+                  Get.to(() => ViewImageScreen(imageUrl: advert.image));
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                      image: NetworkImage(advert.image),
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
               ),
@@ -61,29 +67,34 @@ class AdvertItem extends StatelessWidget {
             style: UITextStyle.titleNormal.copyWith(color: UIColors.primary),
           ),
           const SizedBox(height: 10),
-          Center(
-            child: Obx(() {
-              final isRegistered = controller.registeredCourses.contains(advert.courseId);
-              return MaterialButton(
-                height: 56,
-                minWidth: double.infinity,
-                color: isRegistered ? Colors.grey : UIColors.primary,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                child: Text(
-                  isRegistered ? 'مسجل بالفعل' : 'تسجيل',
-                  style: UITextStyle.titleBold,
-                ),
-                onPressed: isRegistered
-                    ? null
-                    : () {
-                  controller.registerForCourse(advert.courseId!);
-                },
-              );
-            }),
-          ),
+          // عرض زر التسجيل فقط إذا كان الإعلان يحتوي على courseId صالح
+          if (advert.courseId != null && advert.courseId! > 0)
+            Center(
+              child: Obx(() {
+                final isRegistered = controller.registeredCourses.contains(advert.courseId);
+                return MaterialButton(
+                  height: 56,
+                  minWidth: double.infinity,
+                  color: isRegistered ? Colors.grey : UIColors.primary,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  ),
+                  child: Text(
+                    isRegistered ? 'مسجل بالفعل' : 'تسجيل',
+                    style: UITextStyle.titleBold,
+                  ),
+                  onPressed: isRegistered
+                      ? null
+                      : () {
+                    controller.registerForCourse(advert.courseId!);
+                  },
+                );
+              }),
+            ),
         ],
       ),
     );
   }
 }
+
+

@@ -152,7 +152,7 @@ class RegistrationOrderScreen extends StatelessWidget {
                     color: Colors.white,
                   )
                       : registrationController.isSubmitted.value
-                      ? Text('تم إرسال الطلب', style: UITextStyle.titleBold.copyWith(color: UIColors.primary))
+                      ? Text('تم إرسال الطلب، راجع المعهد بعد ثلاثة أيام', style: UITextStyle.titleBold.copyWith(color: UIColors.primary))
                       : Text('حفظ', style: UITextStyle.titleBold),
                   onPressed: registrationController.isSubmitting.value ||
                       registrationController.isSubmitted.value

@@ -19,10 +19,11 @@ class Advert {
     return Advert(
       id: map['ad_info']['id'] ?? 0,
       description: map['ad_info']['description'] ?? "",
-      courseId: map['ad_info']['course_id'] ?? 0,
+      courseId: map['ad_info']['course_id'] != 0 ? map['ad_info']['course_id'] : null,
       createdAt: DateTime.parse(map['ad_info']['created_at']),
       updatedAt: DateTime.parse(map['ad_info']['updated_at']),
       image: map['images'].isNotEmpty ? map['images'][0]['file_info']['image_url'] : "",
     );
   }
+
 }

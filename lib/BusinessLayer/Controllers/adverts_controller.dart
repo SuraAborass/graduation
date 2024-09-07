@@ -2,13 +2,14 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../DataAccessLayer/Models/advert.dart';
 import '../../DataAccessLayer/Repositories/adverts_repo.dart';
+import '../../PresentationLayer/Widgets/Public/snackbars.dart';
 
 class AdvertsController extends GetxController {
   AdvertsRepo repo = AdvertsRepo();
   List<Advert> ads = [];
   var loading = false.obs;
   var registeredCourses = <int>{}.obs; // Set to store registered course IDs
-
+  final storage = GetStorage();
   @override
   void onInit() {
     super.onInit();
@@ -18,19 +19,15 @@ class AdvertsController extends GetxController {
 
   Future<void> getAdverts() async {
     loading.value = true;
-    try {
-      ads = await repo.getAdverts();
-      if (ads.isEmpty) {
-        print('No ads found.');
-      } else {
-        ads.forEach((ad) => print(ad.description)); // طباعة وصف كل إعلان
-      }
-    } catch (e) {
-      print('Error: $e');
-    } finally {
-      update();
-      loading.value = false;
+    String? token = storage.read('userToken');
+    if (token != null) {
+      ads = await repo.getAdverts(token);
+      print("ads: $ads");
+    } else {
+      print("No token found!");
     }
+    update();
+    loading.value = false;
   }
 
   Future<void> loadRegisteredCourses() async {
@@ -53,12 +50,12 @@ class AdvertsController extends GetxController {
       if (success) {
         registeredCourses.add(courseId);
         GetStorage().write('registeredCourses', registeredCourses.toList());
-        Get.snackbar('Success', 'تم التسجيل بنجاح');
+        SnackBars.showSuccess( 'تم التسجيل بنجاح');
       } else {
-        Get.snackbar('Error', 'أنت مسجل بالفعل');
+        SnackBars.showWarning( 'أنت مسجل بالفعل');
       }
     } catch (e) {
-      Get.snackbar('Error', 'حدث خطأ أثناء التسجيل');
+      SnackBars.showError('حدث خطأ أثناء التسجيل');
     }
     update();
   }

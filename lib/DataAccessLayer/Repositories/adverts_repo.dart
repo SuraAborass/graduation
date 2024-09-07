@@ -7,8 +7,8 @@ import '../Models/advert.dart';
 class AdvertsRepo {
   AdvertsClient client = AdvertsClient();
 
-  Future<List<Advert>> getAdverts() async {
-    var response = await client.getAdverts();
+  Future<List<Advert>> getAdverts(String token) async {
+    var response = await client.getAdverts(token);
     if (response != "") {
       final jsonResponse = json.decode(response);
       if (jsonResponse['status'] == "true") {

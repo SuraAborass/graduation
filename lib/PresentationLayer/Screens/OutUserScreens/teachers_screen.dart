@@ -16,9 +16,9 @@ final TeachersController teachersController =  Get.put(TeachersController());
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        bottomNavigationBar: const InstituteBottomNavigationBar(),
+        //bottomNavigationBar: const InstituteBottomNavigationBar(),
         appBar: instituteAppBar(title: Text("المدرّسين",style: UITextStyle.titleBold.copyWith(fontSize: 25))),
-        drawer:  InstituteDrawer(),
+       // drawer:  InstituteDrawer(),
         body: GetBuilder(
             init: teachersController,
             builder: (context) {

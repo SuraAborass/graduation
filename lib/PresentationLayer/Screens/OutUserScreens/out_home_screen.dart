@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import '../../../Constants/colors.dart';
 import '../../../Constants/text_styles.dart';
 import '../../Widgets/Public/AppBar.dart';
-import '../../Widgets/screens_widgets/OutHomeScreenWidgets/about_us_item.dart';
-import '../../Widgets/screens_widgets/OutHomeScreenWidgets/courses_item.dart';
-import '../../Widgets/screens_widgets/OutHomeScreenWidgets/contact_item.dart';
-import '../../Widgets/screens_widgets/OutHomeScreenWidgets/teachers_item.dart';
+import '../../Widgets/screens_widgets/OutUserScreensWidgets/about_us_item.dart';
+import '../../Widgets/screens_widgets/OutUserScreensWidgets/courses_item.dart';
+import '../../Widgets/screens_widgets/OutUserScreensWidgets/adverts_item.dart';
+import '../../Widgets/screens_widgets/OutUserScreensWidgets/teachers_item.dart';
 
 class OutHomeScreen extends StatelessWidget {
   const OutHomeScreen({super.key});
@@ -74,7 +74,7 @@ class OutHomeScreen extends StatelessWidget {
                         children: const [
                           TeachersItem(),
                           CoursesItem(),
-                          ContactItem(),
+                          AdvertsItem(),
                           AboutUsItem()
                         ],
                       ),
@@ -97,7 +97,7 @@ class OutHomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text('طلب تسجيل', style: UITextStyle.titleBold),
+                        Text('طلب تسجيل طالب في المعهد', style: UITextStyle.titleBold),
                       ],
                     ),
                     onPressed: () {

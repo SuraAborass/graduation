@@ -19,29 +19,37 @@ class UserClient {
   }
 
   Future<dynamic> updateInfo(String token, String phone, String password, String confPassword, String address, String? image) async {
-    var response = await http.post(
-      Uri.parse(baseLink + "student/edit_some_info_profile"),
-      body: jsonEncode(<String, dynamic>{
-        "phone": phone,
-        "password": password,
-        "conf_password": confPassword,
-        "address": address,
-        "image": image, // Optional
-      }),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token',
-      },
+    var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(baseLink + "student/edit_some_info_profile")
     );
 
+    request.headers['Authorization'] = 'Bearer $token';
+
+    request.fields['phone'] = phone;
+    request.fields['password'] = password;
+    request.fields['conf_password'] = confPassword;
+    request.fields['address'] = address;
+
+    if (image != null) {
+      request.files.add(await http.MultipartFile.fromPath('image', image));
+    }
+
+    var response = await request.send();
+
+    print('Response status: ${response.statusCode}');
+
     if (response.statusCode == 200) {
-      return response.body;
+      var responseBody = await response.stream.bytesToString();
+      print('Response body: $responseBody');
+      return responseBody;
     } else {
       return null;
     }
   }
 
-  // Future<dynamic> updateAvatar(id, image) async {
+
+// Future<dynamic> updateAvatar(id, image) async {
   //   var url = Uri.parse("${baseLink}updateAvatar");
   //   print(url.toString());
   //   var request = http.MultipartRequest("POST", url)
