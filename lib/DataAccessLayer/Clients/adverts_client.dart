@@ -37,4 +37,38 @@ class AdvertsClient {
       return null;
     }
   }
+
+////out user methods
+  Future<dynamic> getOutUserAdverts() async {
+    var response = await http.get(Uri.parse(baseLink + outAdverts));
+    print(response.body);
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return "";
+    }
+  }
+
+  Future<dynamic> AddOrderToCourse(firstname, lastname,fatherName,gender,
+      phone,address,int courseId) async {
+    var response = await http.post(Uri.parse(baseLink + "out_user/CreateOrderForCourse_out_user/${courseId}"),
+        body:
+        jsonEncode(<String, dynamic>{"first_name": firstname,
+          "last_name": lastname,
+          "father_name": fatherName,
+          "gender": gender,
+          "phone": phone,
+          "address" : address,
+        }),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        });
+    print(response.body);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return null;
+    }
+  }
 }

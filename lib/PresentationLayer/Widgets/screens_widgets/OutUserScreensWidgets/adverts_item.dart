@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../../../../Constants/colors.dart';
+import '../../../../Constants/get_routes.dart';
 import '../../../../Constants/text_styles.dart';
 
 class AdvertsItem extends StatelessWidget {
@@ -11,7 +12,9 @@ class AdvertsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        Get.toNamed(AppRoutes.outAdverts);
+      },
       child: Stack(
         children: [
           Container(

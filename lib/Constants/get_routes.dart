@@ -2,6 +2,8 @@ class AppRoutes {
   static const splashScreen = "/";
   static const loginScreen = "/login";
   static const aboutUs = "/outHome/aboutUs";
+  static const outAdverts = "/outHome/outAdverts";
+  static const oderToCourse = "/outHome/outAdverts/oderToCourse";
   static const registration = "/registration";
   static const homeScreen = "/home";
   static const outHomeScreen = "/outHome";

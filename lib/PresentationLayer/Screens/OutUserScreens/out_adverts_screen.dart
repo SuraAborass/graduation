@@ -1,39 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../BusinessLayer/Controllers/adverts_controller.dart';
+import '../../../BusinessLayer/Controllers/ouUser_adverts_controller.dart';
 import '../../../Constants/text_styles.dart';
 import '../../Widgets/Public/Drawer.dart';
 import '../../Widgets/Public/bottom_navigation.dart';
 import '../../Widgets/Public/institute_appbar.dart';
+import '../../Widgets/screens_widgets/OutUserScreensWidgets/out_advert_item.dart';
 import '../../Widgets/screens_widgets/advert_item.dart';
 
-class AdvertsScreen extends StatelessWidget {
-  AdvertsScreen({super.key});
-  final AdvertsController advertsController = Get.put(AdvertsController());
+class OutAdvertsScreen extends StatelessWidget {
+  OutAdvertsScreen({super.key});
+  final OutUserAdvertsController outUserAdvertsController = Get.put(OutUserAdvertsController());
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        bottomNavigationBar: const InstituteBottomNavigationBar(),
         appBar: instituteAppBar(
             title: Text("الإعلانات",
                 style: UITextStyle.titleBold.copyWith(fontSize: 25))),
-        drawer: InstituteDrawer(),
         body: Padding(
           padding: const EdgeInsets.all(15.0),
           child: GetBuilder(
-              init: advertsController,
+              init: outUserAdvertsController,
               builder: (context) {
-                if (advertsController.loading.value) {
+                if (outUserAdvertsController.loading.value) {
                   return Center(child: CircularProgressIndicator());
                 } else {
                   return ListView.builder(
-                    itemCount: advertsController.ads.length,
+                    itemCount: outUserAdvertsController.outAdverts.length,
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, i) {
-                      return AdvertItem(advert: advertsController.ads[i]);
+                      return OutAdvertItem(advert: outUserAdvertsController.outAdverts[i]);
                     },
                   );
                 }
