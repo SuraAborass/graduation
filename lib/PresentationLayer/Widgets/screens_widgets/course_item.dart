@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:graduation/Constants/get_routes.dart';
 import '../../../Constants/Helpers/course_type.dart';
 import '../../../Constants/colors.dart';
 import '../../../Constants/text_styles.dart';
@@ -61,6 +63,22 @@ class CourseItem extends StatelessWidget {
                       "المدرس: ${course.teacherFirstName} ${course.teacherLastName}",
                       style: UITextStyle.titleBold,
                     ),
+                    if (course.type == 10)
+                    InkWell(
+                      onTap: (){
+                        Get.toNamed(AppRoutes.courseFiles, arguments: {'courseId': course.id});
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.file_copy,size: 30,color: UIColors.white,),
+                          SizedBox(width: 10,),
+                          Text(
+                            "ملحقات",
+                            style: UITextStyle.titleBold,
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),

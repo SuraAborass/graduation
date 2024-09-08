@@ -16,5 +16,20 @@ class CoursesClient {
       return "";
     }
   }
+
+  Future<dynamic> getFilesForCourse(int courseId,String token) async {
+    var response = await http.get(
+      Uri.parse(baseLink + "student/display_file_course/${courseId}" ),
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return "";
+    }
+  }
 }
 

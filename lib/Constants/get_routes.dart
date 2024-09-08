@@ -22,6 +22,7 @@ class AppRoutes {
   static const archiveSubjects = "/home/archiveSubjects";
   static const archiveYears = "/home/archiveSubjects/archiveYears";
   static const courses = "/home/courses";
+  static const courseFiles = "/home/courses/courseFiles";
   static const results = "/home/results";
   static const discussions = "/home/discussions";
   static const oneDiscussion = "/home/discussions/oneDiscussion";

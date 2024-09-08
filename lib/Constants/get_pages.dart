@@ -8,6 +8,7 @@ import '../PresentationLayer/Screens/OutUserScreens/out_home_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/teachers_screen.dart';
 import '../PresentationLayer/Screens/Public/adverts_screen.dart';
 import '../PresentationLayer/Screens/Public/arachive_subjects_screen.dart';
+import '../PresentationLayer/Screens/Public/course_files_screen.dart';
 import '../PresentationLayer/Screens/Public/courses_screen.dart';
 import '../PresentationLayer/Screens/Public/discussions_screen.dart';
 import '../PresentationLayer/Screens/Public/exam_results_screen.dart';
@@ -107,5 +108,8 @@ List<GetPage<dynamic>> getPages = [
   GetPage(
     name: AppRoutes.oderToCourse,
     page: () =>  OrderToCourseScreen(),),
+  GetPage(
+    name: AppRoutes.courseFiles,
+    page: () =>  CourseFilesScreen(),),
 
 ];
