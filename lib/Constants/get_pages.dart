@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import '../PresentationLayer/Screens/Auth/login_screen.dart';
 import '../PresentationLayer/Screens/Auth/registration_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/about_us_screen.dart';
+import '../PresentationLayer/Screens/OutUserScreens/fees_screen.dart';
+import '../PresentationLayer/Screens/OutUserScreens/general_info_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/order_to_course_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/out_adverts_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/out_home_screen.dart';
@@ -102,6 +104,12 @@ List<GetPage<dynamic>> getPages = [
   GetPage(
     name: AppRoutes.aboutUs,
     page: () =>  AboutUsScreen(),),
+  GetPage(
+    name: AppRoutes.generalInfo,
+    page: () =>  GeneralInfoScreen(),),
+  GetPage(
+    name: AppRoutes.fees,
+    page: () =>  FeesScreen(),),
   GetPage(
     name: AppRoutes.outAdverts,
     page: () =>  OutAdvertsScreen(),),

@@ -11,4 +11,14 @@ class InfoClient {
       return "";
     }
   }
+
+  Future<dynamic> getFees() async {
+    var response = await http.get(Uri.parse(baseLink + fees ));
+    print(response.body);
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return "";
+    }
+  }
 }

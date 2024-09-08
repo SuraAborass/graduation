@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../Constants/colors.dart';
-import '../../../Constants/text_styles.dart';
-import '../../../DataAccessLayer/Models/teacher.dart';
+import '../../../../Constants/colors.dart';
+import '../../../../Constants/text_styles.dart';
+import '../../../../DataAccessLayer/Models/teacher.dart';
 
 class TeacherItem extends StatelessWidget {
   const TeacherItem({super.key, required this.teacher});
@@ -57,20 +57,7 @@ class TeacherItem extends StatelessWidget {
                     Row(
                       children: [
                         const SizedBox(width: 10),
-                        Text(
-                          "الرياضيات",
-                          style: UITextStyle.titleBold.copyWith(
-                            color: UIColors.black,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(width: 10),
-                        Text(
-                          teacher.phone,
+                        Text("المادة: ${teacher.subjectName}",
                           style: UITextStyle.titleBold.copyWith(
                             color: UIColors.black,
                           ),

@@ -14,6 +14,7 @@ class Teacher {
   final String year;
   final String image;
   final String email;
+  final String subjectName;
   String? token;
   Teacher({
     required this.id,
@@ -28,6 +29,7 @@ class Teacher {
     required this.year,
     required this.image,
     required this.email,
+    required this.subjectName,
     required this.token,
   });
 
@@ -45,6 +47,7 @@ class Teacher {
       'year': year,
       'image' : image,
       'email':email,
+      'name': subjectName,
       'token': token,
     };
   }
@@ -63,6 +66,7 @@ class Teacher {
       year: map['year'] ?? '',
       image: map['image'] ?? '',
       email: map['email'] ?? '',
+      subjectName: map['teacher']['subject'][0]['name'] ?? '',
       token: map['token'] ?? '',
 
     );

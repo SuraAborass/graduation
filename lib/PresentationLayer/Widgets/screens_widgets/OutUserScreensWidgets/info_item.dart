@@ -17,42 +17,76 @@ class InfoItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10), // إضافة padding حول النص
+            decoration: BoxDecoration(
+              color: UIColors.yellow,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center, // لضمان محاذاة الأيقونة مع النص
+              children: [
+                Icon(Icons.stars, size: 30, color: UIColors.primary),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    institute.name,
+                    style: UITextStyle.titleBold.copyWith(color: UIColors.primary),
+                    softWrap: true, // لضمان أن النص يتجزأ على الأسطر الجديدة إذا كان طويلًا
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center, // لضمان محاذاة الأيقونة مع النص
             children: [
               Icon(Icons.info, size: 30, color: UIColors.primary),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  "${institute.description}",
+                  institute.description,
                   style: UITextStyle.titleBold.copyWith(color: UIColors.primary),
+                  softWrap: true,
                 ),
               ),
             ],
           ),
-          Text(
-            "___________________________________",
-            style: UITextStyle.titleBold.copyWith(color: UIColors.primary),
-          ),
+          const Divider(color: UIColors.primary, thickness: 1),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center, // لضمان محاذاة الأيقونة مع النص
+            children: [
+              Icon(Icons.phone_android, size: 30, color: UIColors.primary),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  "رقم الموبايل: ${institute.phone1}",
+                  style: UITextStyle.titleBold.copyWith(color: UIColors.primary),
+                  softWrap: true,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center, // لضمان محاذاة الأيقونة مع النص
             children: [
               Icon(Icons.phone, size: 30, color: UIColors.primary),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  "رقم الهاتف: ${institute.phone}",
+                  "رقم الأرضي: ${institute.phone2}",
                   style: UITextStyle.titleBold.copyWith(color: UIColors.primary),
+                  softWrap: true,
                 ),
               ),
             ],
           ),
-          Text(
-            "___________________________________",
-            style: UITextStyle.titleBold.copyWith(color: UIColors.primary),
-          ),
+          const Divider(color: UIColors.primary, thickness: 1),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center, // لضمان محاذاة الأيقونة مع النص
             children: [
               Icon(Icons.location_pin, size: 30, color: UIColors.primary),
               const SizedBox(width: 10),
@@ -60,52 +94,37 @@ class InfoItem extends StatelessWidget {
                 child: Text(
                   "العنوان: ${institute.address}",
                   style: UITextStyle.titleBold.copyWith(color: UIColors.primary),
+                  softWrap: true,
                 ),
               ),
             ],
           ),
-          Text(
-            "___________________________________",
-            style: UITextStyle.titleBold.copyWith(color: UIColors.primary),
-          ),
-          const SizedBox(height: 10,),
+          const Divider(color: UIColors.primary, thickness: 1),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
                 onTap: () async {
-                  final url = institute.facebookLink; // رابط الفيسبوك القادم من البيانات
+                  final url = institute.facebookLink;
                   if (await canLaunch(url)) {
-                    await launch(url); // فتح الرابط باستخدام url_launcher
+                    await launch(url);
                   } else {
                     throw 'Could not launch $url';
                   }
                 },
                 child: Icon(
-                  Ionicons.logo_facebook, // أيقونة الفيسبوك
+                  Ionicons.logo_facebook,
                   size: 30,
                   color: UIColors.primary,
                 ),
               ),
               const SizedBox(width: 10),
-              Icon(
-                Ionicons.logo_linkedin, // أيقونة الفيسبوك
-                size: 30,
-                color: UIColors.primary,
-              ),
+              Icon(Ionicons.logo_linkedin, size: 30, color: UIColors.primary),
               const SizedBox(width: 10),
-              Icon(
-                Ionicons.logo_whatsapp, // أيقونة الفيسبوك
-                size: 30,
-                color: UIColors.primary,
-              ),
+              Icon(Ionicons.logo_whatsapp, size: 30, color: UIColors.primary),
               const SizedBox(width: 10),
-              Icon(
-                Ionicons.logo_youtube, // أيقونة الفيسبوك
-                size: 30,
-                color: UIColors.primary,
-              ),
-              const SizedBox(width: 10),
+              Icon(Ionicons.logo_youtube, size: 30, color: UIColors.primary),
             ],
           ),
         ],

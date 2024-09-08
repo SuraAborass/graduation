@@ -5,10 +5,11 @@ import 'package:get/get.dart';
 import '../../../Constants/colors.dart';
 import '../../../Constants/text_styles.dart';
 import '../../Widgets/Public/AppBar.dart';
-import '../../Widgets/screens_widgets/OutUserScreensWidgets/about_us_item.dart';
-import '../../Widgets/screens_widgets/OutUserScreensWidgets/courses_item.dart';
-import '../../Widgets/screens_widgets/OutUserScreensWidgets/adverts_item.dart';
-import '../../Widgets/screens_widgets/OutUserScreensWidgets/teachers_item.dart';
+import '../../Widgets/screens_widgets/OutUserScreensWidgets/Out/about_us_item.dart';
+import '../../Widgets/screens_widgets/OutUserScreensWidgets/Out/adverts_item.dart';
+import '../../Widgets/screens_widgets/OutUserScreensWidgets/Out/teachers_item.dart';
+
+
 
 class OutHomeScreen extends StatelessWidget {
   const OutHomeScreen({super.key});
@@ -73,7 +74,6 @@ class OutHomeScreen extends StatelessWidget {
                             mainAxisSpacing: 0),
                         children: const [
                           TeachersItem(),
-                          CoursesItem(),
                           AdvertsItem(),
                           AboutUsItem()
                         ],

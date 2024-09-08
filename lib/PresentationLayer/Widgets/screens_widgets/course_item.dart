@@ -63,7 +63,7 @@ class CourseItem extends StatelessWidget {
                       "المدرس: ${course.teacherFirstName} ${course.teacherLastName}",
                       style: UITextStyle.titleBold,
                     ),
-                    if (course.type == 10)
+                    if (course.type == 11)
                     InkWell(
                       onTap: (){
                         Get.toNamed(AppRoutes.courseFiles, arguments: {'courseId': course.id});

@@ -26,7 +26,7 @@ final CoursesController coursesController = Get.put(CoursesController());
         appBar: instituteAppBar(
           title: Text(
             "الملفات الخاصة بالدورة",
-            style: UITextStyle.titleBold.copyWith(fontSize: 25),
+            style: UITextStyle.titleBold.copyWith(fontSize: 20),
           ),
         ),
         drawer: InstituteDrawer(),
