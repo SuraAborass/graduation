@@ -48,19 +48,26 @@ class FeeItem extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "الصف: ${fee.className}",
-                      style: UITextStyle.titleBold,
+                      style: UITextStyle.titleBold.copyWith(fontSize: 20),
                       softWrap: true,
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "المبلغ: ${fee.amount.toString()}",
-                      style: UITextStyle.titleBold,
+                      style: UITextStyle.titleBold.copyWith(fontSize: 20),
                       softWrap: true,
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "العام: ${fee.year}",
+                      style: UITextStyle.titleBold.copyWith(fontSize: 20),
+                      softWrap: true,
+                    ),
+                  )
                 ],
               ),
             ),

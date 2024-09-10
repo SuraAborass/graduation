@@ -21,8 +21,6 @@ class OutHomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: UIColors.white,
         appBar: mainAppBar(context),
-       // drawer:  InstituteDrawer(),
-       // bottomNavigationBar: const InstituteBottomNavigationBar(),
         extendBodyBehindAppBar: true,
         body: Padding(
           padding: const EdgeInsets.only(right: 14.0, left: 14.0),
@@ -54,32 +52,37 @@ class OutHomeScreen extends StatelessWidget {
                       onTap: (){
                         Get.toNamed(AppRoutes.loginScreen);
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("من هنا",
-                            style: UITextStyle.titleBold.copyWith(color: UIColors.primary),),
-                       const SizedBox(width: 10,),
-                          Icon(Icons.login,color: UIColors.primary,size: 30,)
-                        ],
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: UIColors.iconColor,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("من هنا",
+                              style: UITextStyle.titleBold.copyWith(color: UIColors.primary),),
+                         const SizedBox(width: 10,),
+                            Icon(Icons.login,color: UIColors.primary,size: 30,)
+                          ],
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      height: Get.height-360,
-                      child: GridView(
-                        gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 0),
-                        children: const [
-                          TeachersItem(),
-                          AdvertsItem(),
-                          AboutUsItem()
-                        ],
-                      ),
-                    ),
-                   // const SizedBox(height: 20,),
+          SizedBox(
+            height: Get.height - 360,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center, // توسيط عمودي
+                crossAxisAlignment: CrossAxisAlignment.center, // توسيط أفقي
+                children: const [
+                  TeachersItem(),
+                  AdvertsItem(),
+                  AboutUsItem(),
+                ],
+              ),
+            ),
+          ),
                   ],
                 ),
                 const SizedBox(height: 10,),
@@ -89,7 +92,7 @@ class OutHomeScreen extends StatelessWidget {
                   child: MaterialButton(
                     height: 50,
                     minWidth: Get.width,
-                    color: UIColors.studentTime,
+                    color: UIColors.yellow,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     ),

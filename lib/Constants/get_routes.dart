@@ -3,6 +3,7 @@ class AppRoutes {
   static const loginScreen = "/login";
   static const aboutUs = "/outHome/aboutUs";
   static const generalInfo = "/outHome/aboutUs/generalInfo";
+  static const resolves = "/outHome/aboutUs/resolves";
   static const fees = "/outHome/aboutUs/fees";
   static const outAdverts = "/outHome/outAdverts";
   static const oderToCourse = "/outHome/outAdverts/oderToCourse";
@@ -26,6 +27,7 @@ class AppRoutes {
   static const courses = "/home/courses";
   static const courseFiles = "/home/courses/courseFiles";
   static const results = "/home/results";
+  static const sumResult = "/home/results/sumResult";
   static const discussions = "/home/discussions";
   static const oneDiscussion = "/home/discussions/oneDiscussion";
 

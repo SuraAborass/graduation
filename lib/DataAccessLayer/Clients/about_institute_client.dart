@@ -21,4 +21,14 @@ class InfoClient {
       return "";
     }
   }
+
+  Future<dynamic> getResolves() async {
+    var response = await http.get(Uri.parse(baseLink + resolves ));
+    print(response.body);
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return "";
+    }
+  }
 }

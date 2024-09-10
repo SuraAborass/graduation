@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../BusinessLayer/Controllers/about_us_controller.dart';
+import '../../../BusinessLayer/Controllers/general_info_controller.dart';
 import '../../../Constants/colors.dart';
 import '../../Widgets/Public/AppBar.dart';
 import '../../Widgets/screens_widgets/OutUserScreensWidgets/info_item.dart';
 
 class GeneralInfoScreen extends StatelessWidget {
   GeneralInfoScreen({super.key});
-  final AboutUsController aboutUsController = Get.put(AboutUsController());
+  final GeneralInfoController generalInfoController = Get.put(GeneralInfoController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +33,14 @@ class GeneralInfoScreen extends StatelessWidget {
               ),
             ),
             GetBuilder(
-              init: aboutUsController,
+              init: generalInfoController,
               builder: (context) {
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
                         (context, i) {
-                      return InfoItem(institute: aboutUsController.infos[i]);
+                      return InfoItem(institute: generalInfoController.infos[i]);
                     },
-                    childCount: aboutUsController.infos.length,
+                    childCount: generalInfoController.infos.length,
                   ),
                 );
               },

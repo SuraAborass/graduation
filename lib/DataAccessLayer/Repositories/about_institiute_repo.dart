@@ -2,6 +2,7 @@ import 'dart:convert';
 import '../Clients/about_institute_client.dart';
 import '../Models/fee.dart';
 import '../Models/institute.dart';
+import '../Models/resolve.dart';
 
 
 class InfoRepo {
@@ -25,4 +26,18 @@ class InfoRepo {
     }
     return [];
   }
+
+
+  Future<List<Resolve>> getResolves() async {
+    var response = await client.getResolves();
+    if (response != "") {
+      final data = json.decode(response) as Map<String, dynamic>;
+
+      // نمرر البيانات بشكل مباشر إلى fromMap
+      return [Resolve.fromMap(data)];
+    }
+    return [];
+  }
+
+
 }

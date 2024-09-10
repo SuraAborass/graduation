@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graduation/Constants/get_routes.dart';
 
-import '../../../../Constants/colors.dart';
-import '../../../../Constants/text_styles.dart';
+import '../../../../../Constants/colors.dart';
+import '../../../../../Constants/text_styles.dart';
 
 class GeneralInfoItem extends StatelessWidget {
   const GeneralInfoItem({super.key});

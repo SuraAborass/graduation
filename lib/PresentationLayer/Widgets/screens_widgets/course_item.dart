@@ -64,19 +64,30 @@ class CourseItem extends StatelessWidget {
                       style: UITextStyle.titleBold,
                     ),
                     if (course.type == 11)
-                    InkWell(
-                      onTap: (){
-                        Get.toNamed(AppRoutes.courseFiles, arguments: {'courseId': course.id});
-                      },
-                      child: Row(
-                        children: [
-                          Icon(Icons.file_copy,size: 30,color: UIColors.white,),
-                          SizedBox(width: 10,),
-                          Text(
-                            "ملحقات",
-                            style: UITextStyle.titleBold,
-                          ),
-                        ],
+                    Container(
+                      width: 150,
+                      decoration: BoxDecoration(
+                        color: CourseType.getCourseType(course.type),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: UIColors.white,
+                          width: 2,
+                        ),
+                      ),
+                      child: InkWell(
+                        onTap: (){
+                          Get.toNamed(AppRoutes.courseFiles, arguments: {'courseId': course.id});
+                        },
+                        child: Row(
+                          children: [
+                            Icon(Icons.file_copy,size: 30,color: UIColors.white,),
+                            SizedBox(width: 10,),
+                            Text(
+                              "ملحقات",
+                              style: UITextStyle.titleBold,
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   ],

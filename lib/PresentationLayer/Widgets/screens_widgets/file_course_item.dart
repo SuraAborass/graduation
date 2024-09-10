@@ -71,7 +71,7 @@ class FileCourseItem extends StatelessWidget {
                         child: Text(
                           fileCourse.description,
                           style: UITextStyle.titleBold,
-                          overflow: TextOverflow.ellipsis,
+                          //overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],

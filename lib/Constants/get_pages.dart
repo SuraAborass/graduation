@@ -7,6 +7,7 @@ import '../PresentationLayer/Screens/OutUserScreens/general_info_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/order_to_course_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/out_adverts_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/out_home_screen.dart';
+import '../PresentationLayer/Screens/OutUserScreens/resolves_screen.dart';
 import '../PresentationLayer/Screens/OutUserScreens/teachers_screen.dart';
 import '../PresentationLayer/Screens/Public/adverts_screen.dart';
 import '../PresentationLayer/Screens/Public/arachive_subjects_screen.dart';
@@ -26,6 +27,7 @@ import '../PresentationLayer/Screens/Public/subject_files_screen.dart';
 import '../PresentationLayer/Screens/Public/subject_images_screen.dart';
 import '../PresentationLayer/Screens/Public/subjects_screen.dart';
 import '../PresentationLayer/Screens/Public/subjects_with_homework_screen.dart';
+import '../PresentationLayer/Screens/Public/sumResult_screen.dart';
 import '../PresentationLayer/Screens/Public/years_archive_screen.dart';
 import 'get_routes.dart';
 
@@ -105,6 +107,9 @@ List<GetPage<dynamic>> getPages = [
     name: AppRoutes.aboutUs,
     page: () =>  AboutUsScreen(),),
   GetPage(
+    name: AppRoutes.resolves,
+    page: () =>  ResolvesScreen(),),
+  GetPage(
     name: AppRoutes.generalInfo,
     page: () =>  GeneralInfoScreen(),),
   GetPage(
@@ -119,5 +124,9 @@ List<GetPage<dynamic>> getPages = [
   GetPage(
     name: AppRoutes.courseFiles,
     page: () =>  CourseFilesScreen(),),
+  GetPage(
+    name: AppRoutes.sumResult,
+    page: () =>  SumResultScreen(),),
+
 
 ];
