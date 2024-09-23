@@ -51,6 +51,8 @@ class UserController extends GetxController {
         MyApp.appUser = user;
         await saveAuthState(user);
         SnackBars.showSuccess("مرحباً ${MyApp.appUser!.firstName}");
+
+        // يمكنك هنا تخزين الـ FCM token أو استخدامه
       } else {
         SnackBars.showWarning('بياناتك غير مطابقة لسجلاتنا');
       }
@@ -59,6 +61,7 @@ class UserController extends GetxController {
     }
     sending.value = false;
   }
+
 
   Future<void> saveAuthState(User user) async {
     await boxClient.setAuthedUser(user);

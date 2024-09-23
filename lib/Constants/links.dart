@@ -1,4 +1,4 @@
-const baseLink = "http://192.168.137.144:8000/api/";
+const baseLink = "http://10.65.0.95:8000/api/";
 const loginLink = "out_user/login";
 const outAdverts = "out_user/all_publish";
 const info = "out_user/display_info_academy";

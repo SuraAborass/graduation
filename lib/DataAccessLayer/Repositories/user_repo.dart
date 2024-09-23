@@ -8,14 +8,19 @@ class UserRepo {
 
   Future<User?> login(String email, String password) async {
     var data = await client.login(email, password);
-    print(data);
+    print('Login Response: $data');
+
     if (data != null) {
       var jsonData = jsonDecode(data);
       var user = User.fromMap(jsonData);
+
+      // تخزين التوكن في التخزين المؤقت
       final storage = GetStorage();
-      storage.write('userToken', user.token); // تخزين التوكن
+      storage.write('userToken', user.token);
+
       return user;
     }
+
     return null;
   }
 

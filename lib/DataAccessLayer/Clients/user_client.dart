@@ -1,16 +1,31 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../Constants/links.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class UserClient {
-  Future<dynamic> login(email, password) async {
-    var response = await http.post(Uri.parse(baseLink + loginLink),
-        body:
-        jsonEncode(<String, dynamic>{"email": email, "password": password}),
+  Future<dynamic> login(String email, String password) async {
+    // الحصول على FCM token
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    String? fcmToken = await messaging.getToken(
+      vapidKey: "BDzG_Nu1aYj-GH9vfWHx4S6j29xC1rpgeuPWFTQUPvUn0Fam3_r9FmJ9krXp00vk1InM9BIwpjxu4bHyBDUfT_0"
+    ); // احصل على FCM Token
+    print('FCM Token: $fcmToken');
+
+    // إرسال طلب تسجيل الدخول مع توكن FCM إلى الخادم
+    var response = await http.post(
+        Uri.parse(baseLink + loginLink),
+        body: jsonEncode(<String, dynamic>{
+          "email": email,
+          "password": password,
+          "fcm_token": fcmToken // إرسال التوكن مع بيانات تسجيل الدخول
+        }),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-        });
-    print(response.body);
+        }
+    );
+
+    print('Response: ${response.body}');
     if (response.statusCode == 200) {
       return response.body;
     } else {
