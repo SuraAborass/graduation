@@ -1,4 +1,4 @@
-const baseLink = "http://10.65.0.95:8000/api/";
+const baseLink = "http://192.168.43.99:8000/api/";
 const loginLink = "out_user/login";
 const outAdverts = "out_user/all_publish";
 const info = "out_user/display_info_academy";
@@ -15,6 +15,7 @@ const courses = "student/my_course";
 const discussions = "student/display_all_post";
 const order = "out_user/add-order";
 const updateProfile = "student/edit_some_info_profile";
+const userNotifications = "display_notification";
 String getComment(int postId) =>"student/post/$postId";
 String add_Comment(int postId) => "student/add_comment/$postId";
 String edit_comment(int commentId) => "student/edit_comment/$commentId";

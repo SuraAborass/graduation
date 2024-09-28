@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'BusinessLayer/Bindings/init_bindings.dart';
+import 'Constants/colors.dart';
 import 'Constants/get_pages.dart';
 import 'DataAccessLayer/Models/user.dart';
 import 'package:get_storage/get_storage.dart';
@@ -19,6 +20,25 @@ void main() async {
 
   // معالجة الإشعارات في الخلفية
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  // استمع للإشعارات أثناء تشغيل التطبيق في المقدمة
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('Received message while app is in foreground: ${message.notification?.title}, ${message.notification?.body}');
+
+    if (message.notification != null) {
+      Get.snackbar(
+        message.notification!.title ?? 'Notification',
+        message.notification!.body ?? 'No message body',
+        snackPosition: SnackPosition.BOTTOM,
+        icon: Icon(
+          Icons.notifications, // هنا نضع أيقونة الإشعارات
+          color: UIColors.yellow,
+        ),
+        backgroundColor: UIColors.white, // تغيير لون الخلفية
+        colorText: UIColors.black, // لون النص
+      );
+    }
+  });
 
   // تهيئة GetStorage
   await GetStorage.init();
